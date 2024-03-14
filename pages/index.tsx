@@ -1,7 +1,7 @@
-"use client";
 import { useState } from "react";
-import styles from "./page.module.css";
-import EChartsGraph from "./component/EChartsGraph";
+import styles from "../styles/Home.module.css";
+import EChartsGraph from "../component/EChartsGraph";
+import Head from "next/head";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +35,11 @@ export default function Home() {
 
   return (
     <div className={styles.wrapper}>
+      <Head>
+        <title>Graph Nodes</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className={styles.btnWrapper}>
         <div className={styles.btnLoad} onClick={fetchData}>
           {isLoadingBtn ? <div className={styles.spinner}></div> : 'Load Graph'}

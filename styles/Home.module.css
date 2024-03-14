@@ -5,6 +5,10 @@
   justify-content: center;
   align-items: center;
   background-color: #000;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute;
+  min-height: 100%;
 }
 
 .main {
