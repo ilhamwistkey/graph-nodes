@@ -97,7 +97,7 @@
 .list {
   margin: 0;
   padding: 0;
-  animation: scrollUp 6.5s 0.16s infinite forwards;
+  animation: scrollUp 15.5s linear infinite;
 }
 
 .item {
@@ -110,10 +110,10 @@
 }
 
 @keyframes scrollUp {
-  from {
+  0% {
     transform: translateY(0);
   }
-  to {
+  100% {
     transform: translateY(-100%);
   }
 }
