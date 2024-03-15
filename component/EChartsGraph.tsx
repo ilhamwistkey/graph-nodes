@@ -112,7 +112,7 @@ const EchartsGraph: React.FC = () => {
     }
 
     const initialEndNode = {
-      id: "end",
+      id: "dummyend",
       name: '',
       x: 2400,
       y: 1000,
@@ -123,7 +123,7 @@ const EchartsGraph: React.FC = () => {
     }
 
     const initialResultNode = {
-      id: "result",
+      id: "dummyresult",
       name: '',
       x: 3000,
       y: 1000,
@@ -186,6 +186,23 @@ const EchartsGraph: React.FC = () => {
       };
     })
 
+    const initialNodesData = [
+      {
+        id: "dummystart",
+        name: '',
+        x: 0,
+        y: 1000,
+        symbolSize: 70,
+        itemStyle: {
+          color: "#fff"
+        }
+      },
+      ...[],
+      ...[],
+      initialEndNode,
+      initialResultNode,
+    ];
+
     const nodesData = [
       startNode,
       ...[],
@@ -242,42 +259,46 @@ const EchartsGraph: React.FC = () => {
 
     const resultNodeLink = { source: "end", target: "result" }
 
-    let nodesData4 = nodesData3.filter((val) => val?.id !== "end")
+    let nodesData4 = nodesData3.filter((val) => val?.id !== "dummyend")
     nodesData4.push(endNode)
 
-    let nodesData5 = nodesData4.filter((val) => val?.id !== "result")
+    let nodesData5 = nodesData4.filter((val) => val?.id !== "dummyresult")
     nodesData5.push(resultNode)
 
     let links = [
       ...leftNodes.map(node => ({ source: "start", target: node })),
     ];
 
-    setGraphLink(links)
-    setGraphData(nodesData)
+    setGraphData(initialNodesData)
+
+    setTimeout(() => {
+      setGraphLink(links)
+      setGraphData(nodesData)
+    }, 1500);
 
     setTimeout(() => {
       links = links.concat(leftNodes.map(node => ({ source: "start", target: node })))
       setGraphLink(links)
       setGraphData(nodesData2)
-    }, 2000);
+    }, 3500);
 
     setTimeout(() => {
       links = links.concat(connectNodes_)
       setGraphLink(links)
       setGraphData(nodesData3)
-    }, 4000);
+    }, 5500);
 
     setTimeout(() => {
       links = links.concat(rightNodes.map(node => ({ source: node, target: "end" })))
       setGraphLink(links)
       setGraphData(nodesData4);
-    }, 6000);
+    }, 7500);
 
     setTimeout(() => {
       links.push(resultNodeLink)
       setGraphLink(links)
       setGraphData(nodesData5);
-    }, 8000);
+    }, 9500);
   }, []);
 
   const option = {
